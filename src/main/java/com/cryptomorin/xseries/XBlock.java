@@ -28,6 +28,7 @@ import org.bukkit.TreeSpecies;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
+import org.bukkit.block.data.Bisected;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Directional;
 import org.bukkit.material.Openable;
@@ -171,6 +172,27 @@ public final class XBlock {
 
     public static boolean isPotato(Material material) {
         return material == Material.POTATO || material == Material.POTATOES;
+    }
+
+    public static Bisected.Half getHalf(Block block) {
+        if (ISFLAT) {
+            if (!(block.getBlockData() instanceof Bisected)) return null;
+            Bisected direction = (Bisected) block.getBlockData();
+            return direction.getHalf();
+        }
+        return null;
+    }
+
+    public static boolean setHalf(Block block, Bisected.Half half) {
+        if (ISFLAT) {
+            if (!(block.getBlockData() instanceof org.bukkit.block.data.Bisected)) return false;
+            BlockData bd = block.getBlockData();
+            org.bukkit.block.data.Bisected direction = (org.bukkit.block.data.Bisected) bd;
+            direction.setHalf(half);
+            block.setBlockData(bd);
+            return true;
+        }
+        return false;
     }
 
     public static BlockFace getDirection(Block block) {
