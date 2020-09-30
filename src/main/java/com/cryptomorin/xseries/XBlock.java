@@ -28,6 +28,7 @@ import org.bukkit.TreeSpecies;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.material.*;
 
@@ -92,8 +93,10 @@ public final class XBlock {
     public static void setLit(Block block, boolean lit) {
         if (ISFLAT) {
             if (!(block.getBlockData() instanceof org.bukkit.block.data.Lightable)) return;
-            org.bukkit.block.data.Lightable lightable = (org.bukkit.block.data.Lightable) block.getBlockData();
+            BlockData bd = block.getBlockData();
+            org.bukkit.block.data.Lightable lightable = (org.bukkit.block.data.Lightable) bd;
             lightable.setLit(lit);
+            block.setBlockData(bd);
             return;
         }
 
@@ -186,8 +189,10 @@ public final class XBlock {
     public static boolean setDirection(Block block, BlockFace facing) {
         if (ISFLAT) {
             if (!(block.getBlockData() instanceof org.bukkit.block.data.Directional)) return false;
-            org.bukkit.block.data.Directional direction = (org.bukkit.block.data.Directional) block.getBlockData();
+            BlockData bd = block.getBlockData();
+            org.bukkit.block.data.Directional direction = (org.bukkit.block.data.Directional) bd;
             direction.setFacing(facing);
+            block.setBlockData(bd);
             return true;
         }
 
@@ -216,8 +221,10 @@ public final class XBlock {
     public static void setAge(Block block, int age) {
         if (ISFLAT) {
             if (!(block.getBlockData() instanceof org.bukkit.block.data.Ageable)) return;
-            org.bukkit.block.data.Ageable ageable = (org.bukkit.block.data.Ageable) block.getBlockData();
+            BlockData bd = block.getBlockData();
+            org.bukkit.block.data.Ageable ageable = (org.bukkit.block.data.Ageable) bd;
             ageable.setAge(age);
+            block.setBlockData(bd);
         }
 
         BlockState state = block.getState();
@@ -258,8 +265,10 @@ public final class XBlock {
     public static boolean setFluidLevel(Block block, int level) {
         if (ISFLAT) {
             if (!(block.getBlockData() instanceof org.bukkit.block.data.Levelled)) return false;
-            org.bukkit.block.data.Levelled levelled = (org.bukkit.block.data.Levelled) block.getBlockData();
+            BlockData bd = block.getBlockData();
+            org.bukkit.block.data.Levelled levelled = (org.bukkit.block.data.Levelled) bd;
             levelled.setLevel(level);
+            block.setBlockData(bd);
             return true;
         }
 
@@ -501,8 +510,10 @@ public final class XBlock {
     public static void setPowered(Block block, boolean powered) {
         if (ISFLAT) {
             if (!(block.getBlockData() instanceof org.bukkit.block.data.Powerable)) return;
-            org.bukkit.block.data.Powerable powerable = (org.bukkit.block.data.Powerable) block.getBlockData();
+            BlockData bd = block.getBlockData();
+            org.bukkit.block.data.Powerable powerable = (org.bukkit.block.data.Powerable) bd;
             powerable.setPowered(powered);
+            block.setBlockData(bd);
             return;
         }
 
@@ -526,8 +537,10 @@ public final class XBlock {
     public static void setOpened(Block block, boolean opened) {
         if (ISFLAT) {
             if (!(block.getBlockData() instanceof org.bukkit.block.data.Openable)) return;
-            org.bukkit.block.data.Openable openable = (org.bukkit.block.data.Openable) block.getBlockData();
+            BlockData bd = block.getBlockData();
+            org.bukkit.block.data.Openable openable = (org.bukkit.block.data.Openable) bd;
             openable.setOpen(opened);
+            block.setBlockData(bd);
             return;
         }
 
@@ -552,8 +565,10 @@ public final class XBlock {
     public static void setRotation(Block block, BlockFace facing) {
         if (ISFLAT) {
             if (!(block.getBlockData() instanceof org.bukkit.block.data.Rotatable)) return;
-            org.bukkit.block.data.Rotatable rotatable = (org.bukkit.block.data.Rotatable) block.getBlockData();
+            BlockData bd = block.getBlockData();
+            org.bukkit.block.data.Rotatable rotatable = (org.bukkit.block.data.Rotatable) bd;
             rotatable.setRotation(facing);
+            block.setBlockData(bd);
         }
     }
 
