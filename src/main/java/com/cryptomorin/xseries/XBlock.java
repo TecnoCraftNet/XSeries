@@ -29,6 +29,8 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Directional;
+import org.bukkit.material.Openable;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.material.*;
 
@@ -198,8 +200,8 @@ public final class XBlock {
 
         BlockState state = block.getState();
         MaterialData data = state.getData();
-        if (data instanceof Directional) {
-            ((Directional) data).setFacingDirection(facing);
+        if (data instanceof org.bukkit.material.Directional) {
+            ((org.bukkit.material.Directional) data).setFacingDirection(facing);
             state.update(true);
             return true;
         }
