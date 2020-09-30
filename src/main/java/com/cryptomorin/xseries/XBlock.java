@@ -29,10 +29,8 @@ import org.bukkit.TreeSpecies;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
-import org.bukkit.block.data.Bisected;
-import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.*;
 import org.bukkit.block.data.Directional;
-import org.bukkit.block.data.Orientable;
 import org.bukkit.material.Openable;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.material.*;
@@ -174,6 +172,27 @@ public final class XBlock {
 
     public static boolean isPotato(Material material) {
         return material == Material.POTATO || material == Material.POTATOES;
+    }
+
+    public static boolean isWaterLogged(Block block) {
+        if (ISFLAT) {
+            if (!(block.getBlockData() instanceof Waterlogged)) return false;
+            Waterlogged direction = (Waterlogged) block.getBlockData();
+            return direction.isWaterlogged();
+        }
+        return false;
+    }
+
+    public static boolean setWaterLogged(Block block, Boolean waterlogged) {
+        if (ISFLAT) {
+            if (!(block.getBlockData() instanceof org.bukkit.block.data.Waterlogged)) return false;
+            BlockData bd = block.getBlockData();
+            org.bukkit.block.data.Waterlogged direction = (org.bukkit.block.data.Waterlogged) bd;
+            direction.setWaterlogged(waterlogged);
+            block.setBlockData(bd);
+            return true;
+        }
+        return false;
     }
 
     public static Bisected.Half getHalf(Block block) {
